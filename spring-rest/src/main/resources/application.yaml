@@ -1,0 +1,11 @@
+webdriver:
+    urlSeleniumServer: http://localhost:4444/wd/hub
+    urlDefaultWebpageToOpen: http://localhost:4444
+
+---
+
+spring:
+    profiles: docker
+webdriver:
+    urlSeleniumServer: http://selenium:4444/wd/hub
+    urlDefaultWebpageToOpen: http://localhost:4444

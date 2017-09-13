@@ -1,0 +1,23 @@
+version: '2.1'
+
+services:
+
+    selenium:
+        image: selenium/standalone-firefox-debug:3.5.3
+        shm_size: 2G
+        ports:
+            - "$PORT_04444_SELENIUM_TCP"
+            - "$PORT_05900_SELENIUM_VNC"
+        restart: always
+
+    spring:
+        image: openjdk:8-jdk
+        working_dir: /spring-rest
+        command: ./mvnw spring-boot:run -Drun.profiles=docker
+        ports:
+            - "$PORT_08080_SPRING_REST"
+        links:
+            - selenium
+        volumes:
+            - "$VOLUME_SPRING_REST"
+        restart: always
